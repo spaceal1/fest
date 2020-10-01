@@ -1,3 +1,3 @@
 # fest
 
-## stating my new project!
+## starting my new project!
