@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Javasript car game</title>
+	
+</head>
+<body>
+
+<div id="start"></div>
+<div id="steps"></div>
+<div id="station"></div>
+
+
+<button onclick="rideCar()">start car</button>
+
+
+
+	<script type="text/javascript">
+
+
+
+
+		function rideCar(){
+			if(document.getElementById('start').innerHTML==="GAME STARTED"){
+				document.getElementById('steps').innerHTML="";
+				document.getElementById('start').innerHTML="";
+				
+			}
+
+
+
+
+
+		document.getElementById('start').innerHTML="GAME STARTED";
+
+		var stations = [];
+	  for (let i = 0; i < 5; i++) {
+	    let petrol_pumps = Math.floor(Math.random() * 101);
+
+	    stations.push(petrol_pumps);
+	  }
+	     stations.sort(function (a, b) {
+	      return a - b;
+	    });
+		//var stations=["20","40","60","80","100"]; //fueling points
+		document.getElementById("station").innerHTML=stations;
+
+
+	   
+
+		var i=0;
+		var petrol=30;
+		var point=0;
+		while(i<=4){
+			//alert(i);
+			var dist=Math.floor(Math.random()*20);
+			if(dist>6){
+				dist=Math.floor(dist/3);
+			}
+			if(dist<=0){
+				dist+=3;
+			}
+			
+			var new_petrol=petrol-dist; //get fuel available for next step
+			if(new_petrol<=0){
+              point=i*20;
+              petrol+=20;
+
+			}else{
+			point+=dist; //distance covered
+			petrol-=dist;//get new petrol
+			if(point==stations[0] || dist==stations[1] || dist==stations[2] || dist==stations[3] || dist==stations[4]){
+				petrol+=20;
+			}
+		}
+		var steps=document.getElementById('steps').innerHTML;
+		document.getElementById('steps').innerHTML=steps+"<p>Step "+(i+1)+", car at "+point+",petrol remaining "+petrol+"</p>";
+			//alert("car at "+point+" New Petrol is "+petrol);
+			i+=1;
+		}
+		
+		//alert(stations[0]);
+		//document.getElementById('start').innerHTML=stations[2];
+
+	}
+	</script>
+
+</body>
+</html>
